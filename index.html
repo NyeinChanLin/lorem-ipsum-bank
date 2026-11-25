@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="_blob/favicon.svg" type="image/svg+xml">
+<title>Lorem Ipsum — Homepage concept</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&amp;family=Vazirmatn:wght@400;500;600;700&amp;family=Azeret+Mono:wght@400;500&amp;family=Familjen+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  /* colour */
+  --c-red:#CF202E; --c-red-deep:#8F1520;
+  --c-ink:#231C19; --c-ink-2:#4A403A; --c-ink-3:#5C524A; --c-ink-deep:#161311;
+  --c-stone:#FBF8F2; --c-stone-2:#F8F6F0; --c-stone-3:#EFE6D8; --c-line:#DCCFBD; --c-wave:#EADFCC;
+  --c-sand:#FBE7BE; --c-gold:#F8B333;
+  --c-night:#2A1F1B; --c-night-2:#3A2C26; --c-night-line:#54443C; --c-night-muted:#7A665B; --c-field-line:#8A8178;
+  --c-on-night:#F3E9DC; --c-on-night-2:#E3D3C2; --c-white:#FFFFFF;
+  --c-glass:rgba(255,255,255,.1); --c-glass-line:rgba(255,255,255,.16); --c-field:rgba(255,255,255,.05);
+  --c-rule-on-red:rgba(248,179,51,.35);
+  /* type */
+  --font-display:'Markazi Text', serif; --font-body:'Vazirmatn', system-ui, sans-serif; --font-ui:'Familjen Grotesk', sans-serif; --font-mono:'Azeret Mono', monospace;
+  --fs-2xs:12px; --fs-xs:13px; --fs-sm:14px; --fs-ui:15px; --fs-body:16px; --fs-md:17px; --fs-lg:18px; --fs-xl:20px; --fs-2xl:24px;
+  --fs-h4:28px; --fs-h3:34px; --fs-ar-sub:36px; --fs-ar-display:48px; --fs-figure:84px;
+  --fs-h3-fluid:clamp(34px, 3vw, 44px); --fs-callout:clamp(40px, 3.6vw, 54px); --fs-h2-box:clamp(44px, 4vw, 60px);
+  --fs-h2:clamp(48px, 4.6vw, 68px); --fs-display:clamp(64px, 7vw, 101px); --fs-hero:clamp(72px, 8vw, 115px);
+  --fs-num-lg:clamp(34px, 3.4vw, 48px); --fs-num-md:clamp(24px, 2.2vw, 32px);
+  /* space (4px base) */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-7:28px; --s-8:32px; --s-10:40px; --s-12:48px; --s-14:56px; --s-16:64px; --s-18:72px; --s-24:96px;
+  /* layout */
+  --container:1392px; --target:44px; --control:48px; --tile-min:300px; --media-sm:180px; --frame:clamp(10px, 1.6vw, 24px); --gutter:clamp(20px, 3.6vw, 52px); --section-y:clamp(48px, 6vw, 96px);
+  /* radius */
+  --tel-tracking:-0.05em; --tel-group-gap:-0.3em;
+  --r-xs:4px; --r-sm:14px; --r-md:22px; --r-lg:32px; --r-xl:48px; --r-pill:999px;
+}
+body{margin:0}
+a{color:var(--c-ink);text-underline-offset:4px}a:hover{color:var(--c-red)}
+::selection{background:var(--c-gold);color:var(--c-ink)}
+:focus-visible{outline:3px solid var(--focus, var(--c-ink));outline-offset:2px;box-shadow:0 0 0 2px var(--focus-halo, var(--c-white))}
+/* focus colour per surface: every ring clears 3:1 against what it sits on */
+.on-light{--focus:var(--c-ink);--focus-halo:var(--c-white)}
+.on-dark{--focus:var(--c-gold);--focus-halo:var(--c-night)}
+.on-red,.on-photo{--focus:var(--c-white);--focus-halo:var(--c-ink)}
+/* phone numbers: tabular mono figures, tighter tracking, one line, selectable */
+.fa-tel{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:var(--tel-tracking);word-spacing:var(--tel-group-gap);white-space:nowrap;-webkit-user-select:text;user-select:text}
+a[href^="tel:"]{-webkit-user-drag:none}
+.fa-t{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target);min-width:var(--target)}
+a[data-lift]{transition:transform 420ms var(--ease-in-out),box-shadow 420ms var(--ease-in-out)}
+a[data-lift]:hover{transform:translateY(-4px);color:inherit;box-shadow:0 18px 36px -22px rgba(0,0,0,.55)}
+a[data-lift] .fa-arr{transition:transform 420ms var(--ease-in-out)}
+a[data-lift]:hover .fa-arr{transform:translateX(4px)}
+
+/* ───────── motion system: ease-out for entrances, ease-in for exits, ease-in-out for state changes ───────── */
+:root{
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-in:cubic-bezier(0.7,0,0.84,0);
+  --ease-in-out:cubic-bezier(0.65,0,0.35,1);
+  --ease-soft:cubic-bezier(0.45,0,0.55,1);
+}
+html{scroll-behavior:smooth}
+.fa-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:var(--c-gold);transform-origin:left center;transform:scaleX(0);pointer-events:none}
+
+/* buttons: lift + soft shadow, press-down on click */
+.fa-pill{transition:transform 380ms var(--ease-in-out),box-shadow 380ms var(--ease-in-out),background-color 380ms var(--ease-in-out),color 380ms var(--ease-in-out)}
+.fa-pill:hover,a:hover>.fa-pill{transform:translateY(-2px);box-shadow:0 12px 26px -14px rgba(20,10,8,.6)}
+.fa-pill:active,a:active>.fa-pill{transform:translateY(0) scale(.97);transition-duration:140ms}
+.fa-arr{flex:none;transition:transform 380ms var(--ease-in-out)}
+a:hover .fa-arr,button:hover .fa-arr{transform:translateX(4px)}
+.fa-ctl{transition:background-color 300ms var(--ease-in-out),transform 300ms var(--ease-in-out)}
+.fa-ctl:active{transform:scale(.94)}
+
+/* hero intro: words rise out of a mask, Arabic wipes in right-to-left, then copy, CTA and the carousel */
+.fa-w{display:inline-block;overflow:hidden;vertical-align:top;padding:0.08em 0.04em 0.16em;margin:-0.08em -0.04em -0.16em}
+.fa-w>span{display:inline-block;transform-origin:0 100%}
+.fa-anim .fa-w>span{transform:translate3d(0,112%,0) rotate(5deg);transition:transform 1150ms var(--ease-out)}
+.fa-anim.fa-ready .fa-w>span{transform:none}
+.fa-w:nth-child(1)>span{transition-delay:150ms}
+.fa-w:nth-child(2)>span{transition-delay:240ms}
+.fa-w:nth-child(3)>span{transition-delay:330ms}
+.fa-w:nth-child(4)>span{transition-delay:420ms}
+.fa-w:nth-child(5)>span{transition-delay:510ms}
+[data-hero="ar"]{align-self:flex-start}
+.fa-anim [data-hero="ar"]{clip-path:inset(-10% -2% -10% 100%);opacity:0;transition:clip-path 1300ms var(--ease-in-out) 750ms,opacity 700ms var(--ease-in-out) 750ms}
+.fa-anim.fa-ready [data-hero="ar"]{clip-path:inset(-10% -2% -10% -2%);opacity:1}
+.fa-anim [data-hero="body"],.fa-anim [data-hero="cta"]{opacity:0;transform:translate3d(0,28px,0);transition:opacity 900ms var(--ease-in-out),transform 1100ms var(--ease-out)}
+.fa-anim [data-hero="body"]{transition-delay:950ms}
+.fa-anim [data-hero="cta"]{transition-delay:1100ms}
+.fa-anim.fa-ready [data-hero="body"],.fa-anim.fa-ready [data-hero="cta"]{opacity:1;transform:none}
+.fa-anim [data-hero="figure"]{clip-path:inset(9% 7% 9% 7% round 48px);opacity:0;transition:clip-path 1500ms var(--ease-in-out) 300ms,opacity 900ms var(--ease-in-out) 300ms}
+.fa-anim.fa-ready [data-hero="figure"]{clip-path:inset(0 0 0 0 round 48px);opacity:1}
+.fa-anim .fa-header>*,.fa-anim .fa-nav>a{opacity:0;transform:translate3d(0,-14px,0);transition:opacity 800ms var(--ease-in-out),transform 900ms var(--ease-out)}
+.fa-anim.fa-ready .fa-header>*,.fa-anim.fa-ready .fa-nav>a{opacity:1;transform:none}
+.fa-anim .fa-nav{transform:none!important}
+.fa-nav>a:nth-child(2){transition-delay:60ms}.fa-nav>a:nth-child(3){transition-delay:120ms}.fa-nav>a:nth-child(4){transition-delay:180ms}.fa-nav>a:nth-child(5){transition-delay:240ms}
+.fa-header>.fa-login{transition-delay:300ms}
+
+/* carousel caption: leaves with ease-in, arrives with ease-out after the crossfade */
+.fa-hero-caption>*{opacity:0;transform:translate3d(0,18px,0);transition:opacity 420ms var(--ease-in),transform 420ms var(--ease-in)}
+.fa-slide[data-active="true"] .fa-hero-caption>*{opacity:1;transform:none;transition:opacity 800ms var(--ease-out) 380ms,transform 950ms var(--ease-out) 380ms}
+.fa-slide[data-active="true"] .fa-hero-caption>*:nth-child(2){transition-delay:520ms}
+
+/* scroll reveals (only once JS has marked the page; nothing hides without it) */
+.fa-anim [data-reveal]{opacity:0;transform:translate3d(0,44px,0);transition:opacity 900ms var(--ease-in-out),transform 1150ms var(--ease-out)}
+/* siblings in a [data-stagger] group arrive one after another, 90ms apart */
+[data-stagger]>[data-reveal]:nth-child(2){transition-delay:90ms}
+[data-stagger]>[data-reveal]:nth-child(3){transition-delay:180ms}
+[data-stagger]>[data-reveal]:nth-child(4){transition-delay:270ms}
+[data-stagger]>[data-reveal]:nth-child(5){transition-delay:360ms}
+[data-stagger]>[data-reveal]:nth-child(6){transition-delay:450ms}
+[data-stagger]>[data-reveal]:nth-child(n+7){transition-delay:540ms}
+.fa-anim [data-reveal].is-in{opacity:1;transform:none}
+.fa-anim [data-reveal="mask"]{opacity:1;transform:none;clip-path:inset(100% -6% -30% -6%);translate:0 0.35em;transition:clip-path 1200ms var(--ease-in-out),translate 1200ms var(--ease-out)}
+.fa-anim [data-reveal="mask"].is-in{clip-path:inset(-30% -6% -30% -6%);translate:0 0}
+.fa-anim [data-reveal="img"]{opacity:1;transform:none;clip-path:inset(12% 9% 12% 9% round 22px);transition:clip-path 1400ms var(--ease-in-out)}
+.fa-anim [data-reveal="img"].is-in{clip-path:inset(0 0 0 0 round 22px)}
+[data-reveal="img"] img{transition:scale 1700ms var(--ease-out)}
+.fa-anim [data-reveal="img"]:not(.is-in) img{scale:1.18}
+[data-parallax]{will-change:transform}
+[data-parallax="waves"]{transform:translate3d(0,var(--py-waves,0px),0)}
+[data-parallax="tasks"]{transform:translate3d(0,var(--py-tasks,0px),0)}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+
+/* ───────── responsive: tablet ≤1099px, phone ≤759px, small phone ≤479px ───────── */
+.fa-menu-btn{display:none}
+.fa-burger{position:relative;display:block;width:20px;height:14px}
+.fa-burger span{position:absolute;left:0;right:0;height:2px;border-radius:2px;background:currentColor;transition:transform 380ms var(--ease-in-out),opacity 240ms var(--ease-in-out),top 380ms var(--ease-in-out)}
+.fa-burger span:nth-child(1){top:0}.fa-burger span:nth-child(2){top:6px}.fa-burger span:nth-child(3){top:12px}
+.fa-menu-btn[aria-expanded="true"] .fa-burger span:nth-child(1){top:6px;transform:rotate(45deg)}
+.fa-menu-btn[aria-expanded="true"] .fa-burger span:nth-child(2){opacity:0}
+.fa-menu-btn[aria-expanded="true"] .fa-burger span:nth-child(3){top:6px;transform:rotate(-45deg)}
+@keyframes fa-menu-in{from{opacity:0;transform:translate3d(0,-10px,0)}to{opacity:1;transform:none}}
+
+@media (max-width:1099px){
+  /* tasks: two columns on tablet */
+  .fa-task-grid{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))!important}
+  /* hero photo: landscape instead of near-square */
+  .fa-hero .fa-hero-figure{aspect-ratio:16/10;max-height:none}
+  /* products photo spans the row as a landscape band */
+  .fa-prod-media{flex:1 1 100%!important;aspect-ratio:16/9!important}
+  /* estimate: copy and form each take the full width */
+  .fa-est-copy{flex:1 1 100%!important;max-width:none!important}
+  .fa-est-copy>p{max-width:560px!important}
+  .fa-est-form{flex:1 1 100%!important}
+  /* digital banking + offers: two columns, the odd tile out spans both */
+  .fa-dig-grid,.fa-off-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .fa-dig-grid>:last-child,.fa-off-grid>:last-child:nth-child(odd){grid-column:1 / -1}
+  .fa-dig-grid>:last-child{min-height:260px}
+  .fa-off-grid>:last-child:nth-child(odd){min-height:220px}
+  /* footer: logo row, then the three columns side by side */
+  .fa-foot-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:var(--s-8) var(--s-6)!important}
+  .fa-foot-grid>:first-child{grid-column:1 / -1}
+}
+
+@media (max-width:759px){
+  :root{--r-lg:24px;--r-xl:28px;--tile-min:200px}
+  /* top bar: segments left, phone + Arabic right, the long prices link moves out */
+  .fa-util{flex-wrap:nowrap!important;gap:var(--s-2)!important}
+  .fa-util-prices{display:none!important}
+  .fa-util-right{gap:var(--s-3)!important}
+  .fa-util nav{gap:var(--s-2)!important}
+  /* header: logo left; Log in + menu button right; nav drops down as a panel */
+  header.fa-header{flex-wrap:nowrap;gap:var(--s-2);padding-block:var(--s-4)}
+  .fa-header .fa-mark-ar{font-size:24px}.fa-header .fa-mark-en{font-size:16px}
+  .fa-header .fa-login{margin-inline-start:auto}
+  .fa-login .fa-pill{padding:0 var(--s-5)!important}
+  .fa-menu-btn{display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--target);height:var(--target);padding:0;border:1px solid var(--c-line);border-radius:var(--r-pill);background:var(--c-white);color:var(--c-ink);cursor:pointer}
+  .fa-header .fa-nav{display:none;position:absolute;z-index:20;top:100%;left:var(--gutter);right:var(--gutter);flex-direction:column;flex-wrap:nowrap;gap:0;margin:0;padding:var(--s-2);border:1px solid var(--c-line);border-radius:var(--r-md);background:var(--c-stone);box-shadow:0 24px 48px -24px rgba(35,28,25,.45)}
+  .fa-header .fa-nav[data-open="true"]{display:flex;animation:fa-menu-in 420ms var(--ease-out) both}
+  .fa-nav>a{justify-content:flex-start!important;min-height:52px!important;padding:0 var(--s-4);border-radius:var(--r-sm)}
+  .fa-nav>a+a{border-top:1px solid var(--c-stone-3)}
+  /* hero */
+  .fa-hero-copy>div{padding-top:var(--s-8)!important}
+  .fa-hero .fa-hero-figure{aspect-ratio:4/5}
+  .fa-hero .fa-hero-caption{inset-inline:var(--s-5)}
+  /* tasks: compact cards, icon beside nothing, short gap */
+  .fa-task-grid{gap:var(--s-3)!important}
+  .fa-task{gap:var(--s-6)!important;padding:var(--s-5)!important}
+  /* products: link sits under the name, left-aligned */
+  .fa-prod-more{margin-inline-start:0!important}
+  .fa-prod-head>p{flex-basis:100%!important}
+  .fa-prod-media{aspect-ratio:4/3!important}
+  /* estimate: less nested padding so the form has room */
+  .fa-est-box{padding:var(--s-6) var(--s-4)!important}
+  .fa-est-form{padding:var(--s-5) var(--s-4)!important}
+  /* digital banking + offers: single column */
+  .fa-dig-grid,.fa-off-grid{grid-template-columns:minmax(0,1fr)!important}
+  .fa-dig-grid>:last-child{min-height:240px}
+  .fa-off-head{align-items:flex-end!important}
+  /* help: tighter red card */
+  .fa-help-card{padding:var(--s-6) var(--s-5)!important}
+  /* footer: logo and newsletter full width, the two link lists side by side */
+  .fa-foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:var(--s-8) var(--s-5)!important}
+  .fa-foot-grid>:first-child,.fa-foot-grid>:last-child{grid-column:1 / -1}
+  .fa-foot-base{flex-direction:column}
+}
+
+@media (max-width:479px){
+  .fa-hero h1{font-size:clamp(52px,15vw,64px)!important}
+  .fa-hero-copy p[lang="ar"]{font-size:30px!important}
+  .fa-util .fa-tel{font-size:var(--fs-2xs)}
+  .fa-login .fa-pill{padding:0 var(--s-4)!important}
+}
+/* header + hero: two columns from 1100px, stacked below */
+a:has(>.fa-mark){text-decoration:none}.fa-mark{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;color:var(--c-ink)}.fa-mark-ar{font-family:var(--font-display);font-size:30px;font-weight:600}.fa-mark-en{font-family:var(--font-ui);font-size:19px;font-weight:600;letter-spacing:.01em}.fa-mark-en::after{content:"";display:inline-block;width:.32em;height:.32em;margin-inline-start:.12em;border-radius:50%;background:var(--c-red)}.fa-mark-sm .fa-mark-ar{font-size:24px}.fa-mark-sm .fa-mark-en{font-size:16px}
+.fa-header{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-8);padding:var(--s-6) var(--gutter)}
+.fa-nav{flex:1;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:var(--s-1) var(--s-8);margin-inline-end:var(--s-12)}
+.fa-hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,562px);gap:var(--s-10) var(--s-14);padding:clamp(var(--s-6),3vw,var(--s-10)) var(--gutter) 0}
+.fa-hero-copy{display:flex;flex-direction:column;max-width:580px;padding-bottom:var(--s-5)}
+.fa-hero-figure{position:relative;width:100%;aspect-ratio:562/575;max-height:575px;margin:var(--s-3) 0 0;border-radius:var(--r-xl);overflow:hidden;background:var(--c-stone-3)}
+/* hero carousel: crossfade, manual controls, pause; no autoplay with reduced motion */
+.fa-slide{position:absolute;inset:0;transition:opacity 800ms var(--ease-in-out), transform 1600ms var(--ease-out), visibility 0s linear 0s}
+.fa-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fa-scrim{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 38%, rgba(23,10,12,.66) 100%);pointer-events:none}
+.fa-hero-caption{position:absolute;inset-inline:var(--s-6);bottom:calc(var(--s-5) + var(--target) + var(--s-2))}
+.fa-hero-controls{position:absolute;inset-inline:var(--s-6);bottom:var(--s-5);display:flex;align-items:center;gap:var(--s-2)}
+.fa-segs{flex:1;min-width:0;display:flex;margin-inline-end:var(--s-2)}
+.fa-seg-btn{flex:1;min-width:var(--target);height:var(--target);padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center}
+.fa-seg-track{position:relative;display:block;width:100%;margin-inline:3px;height:3px;border-radius:var(--r-pill);background:rgba(255,255,255,.38);overflow:hidden}
+.fa-seg-fill{position:absolute;inset:0;background:var(--c-white);transform-origin:left center}
+[dir=rtl] .fa-seg-fill{transform-origin:right center}
+.fa-ctl{flex:none;width:var(--target);height:var(--target);border:1px solid rgba(255,255,255,.4);border-radius:var(--r-pill);background:rgba(23,10,12,.28);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--c-white);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.fa-ctl:hover{background:rgba(23,10,12,.5)}
+.fa-arrow{position:absolute;top:50%;z-index:2;margin-top:calc(var(--target) / -2);opacity:.85;transition:opacity 200ms ease, background-color 200ms ease}
+.fa-arrow-l{left:var(--s-4)}.fa-arrow-r{right:var(--s-4)}
+.fa-hero-figure:hover .fa-arrow,.fa-arrow:focus-visible{opacity:1}
+@media (max-width:479px){.fa-ctl-step{display:none}}
+@keyframes fa-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:1099px){
+  .fa-nav{order:3;flex:1 1 100%;justify-content:flex-start;margin-inline-end:0;column-gap:var(--s-6)}
+  .fa-login{margin-inline-start:auto}
+  .fa-hero{grid-template-columns:minmax(0,1fr)}
+  .fa-hero-copy{padding-bottom:0}
+  .fa-hero-figure{margin-top:0}
+}
+/* estimate type selector: one line per option, one type step smaller on phones */
+.fa-seg button{white-space:nowrap;padding-inline:var(--s-1);font-size:var(--fs-body)}
+@media (max-width:479px){.fa-seg button{font-size:var(--fs-sm)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="on-red" style="position: relative; font-family: var(--font-body); background: var(--c-red); color: var(--c-ink); font-size: var(--fs-body); line-height: 1.55; padding: 0 var(--frame); overflow-x: hidden">
+<svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.14; mix-blend-mode: multiply; pointer-events: none"><filter id="fa-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7"></feTurbulence><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.03  0 0 0 0 0.06  0 0 0 0.9 0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#fa-grain)"></rect></svg>
+<div class="fa-progress" aria-hidden="true"></div>
+
+<div class="fa-util" style="position: relative; max-width: var(--container); margin: 0 auto; box-sizing: border-box; min-height: 48px; padding-inline: var(--gutter); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-2) var(--s-6); font-size: var(--fs-xs); color: var(--c-white)">
+<nav aria-label="Customer segment" style="display: flex; gap: var(--s-5)"><a href="#" aria-current="page" style="display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); min-width: var(--target); color: var(--c-white); font-weight: 700; text-decoration: underline; text-decoration-color: var(--c-gold); text-decoration-thickness: 2px; text-underline-offset: 6px">Personal</a><a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); min-width: var(--target); color: var(--c-white); text-decoration: none">Corporate</a><a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); min-width: var(--target); color: var(--c-white); text-decoration: none">SME</a></nav>
+<div class="fa-util-right" style="display: flex; gap: var(--s-6); align-items: center"><a href="#" class="fa-t fa-util-prices" style="color: var(--c-white); text-underline-offset: 3px">Prices of financing and savings products</a><a href="tel:8000000000" draggable="false" class="fa-t fa-tel" style="color: var(--c-white); text-decoration: none">800 000 0000</a><a href="#" lang="ar" class="fa-t" aria-label="العربية — Switch to Arabic" style="color: var(--c-white); text-decoration: none; font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 600">عربي</a></div>
+</div>
+
+<div class="on-light" style="position: relative; max-width: var(--container); margin: 0 auto; background: var(--c-stone); border-radius: var(--r-lg); overflow: hidden">
+<svg aria-hidden="true" data-parallax="waves" data-speed="0.12" viewBox="0 0 1400 700" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 700px; pointer-events: none"><sc-for list="{{waves}}" as="w" hint-placeholder-count="20"><path d="{{w}}" fill="none" stroke="currentColor" stroke-width="1" style="color: var(--c-wave)"></path></sc-for></svg>
+
+<header class="fa-header">
+<a href="#" aria-label="Lorem Ipsum, home" style="display: flex; align-items: center"><span class="fa-mark" aria-hidden="true"><span class="fa-mark-ar" lang="ar" dir="rtl">لوريم إيبسوم</span><span class="fa-mark-en">Lorem Ipsum</span></span></a>
+<nav aria-label="Main" id="fa-nav" class="fa-nav" data-open="{{menuOpen}}" onClick="{{closeMenu}}">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="5"><a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); min-width: var(--target); color: var(--c-ink); text-decoration: none; font-family: var(--font-ui); font-size: var(--fs-lg); font-weight: 500; line-height: 23.2px">{{n}}</a></sc-for>
+</nav>
+<a href="#" class="fa-login" style="display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); min-width: var(--target); color: var(--c-white); text-decoration: none"><span class="fa-pill" style="display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: 0 var(--s-8); border-radius: var(--r-pill); background: var(--c-ink); font-size: var(--fs-ui); font-weight: 600; line-height: 23.2px">Log in</span></a>
+<button type="button" class="fa-menu-btn" aria-controls="fa-nav" aria-expanded="{{menuOpen}}" aria-label="{{menuLabel}}" onClick="{{toggleMenu}}"><span class="fa-burger" aria-hidden="true"><span></span><span></span><span></span></span></button>
+</header>
+
+<section aria-labelledby="fa-hero" class="fa-hero">
+<div class="fa-hero-copy">
+<h1 id="fa-hero" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 700; line-height: 0.86; letter-spacing: -1.7px; color: var(--c-ink); text-wrap: balance" aria-label="Your account, in good order."><span class="fa-w" aria-hidden="true"><span>Your</span></span> <span class="fa-w" aria-hidden="true"><span>account,</span></span> <span class="fa-w" aria-hidden="true"><span>in</span></span> <span class="fa-w" aria-hidden="true"><span>good</span></span> <span class="fa-w" aria-hidden="true"><span>order.</span></span></h1>
+<p lang="ar" data-hero="ar" style="margin: var(--s-5) 0 0; font-family: var(--font-display); font-size: var(--fs-ar-sub); font-weight: 600; color: var(--c-red); line-height: 1.3">حسابك، في أحسن حال.</p>
+<div style="margin-top: auto; padding-top: var(--s-12)">
+<p data-hero="body" style="margin: 0; max-width: 473px; font-size: var(--fs-lg); line-height: 27.9px; color: var(--c-ink-2)">Open an account online, manage your money in the Lorem Ipsum app, and reach us whenever you need help.</p>
+<div data-hero="cta" style="margin-top: var(--s-7)"><a href="#" class="fa-pill" style="display: inline-flex; align-items: center; justify-content: center; gap: var(--s-4); min-height: 58px; padding: 0 var(--s-7); border-radius: var(--r-pill); background: var(--c-red); color: var(--c-white); text-decoration: none; font-size: var(--fs-md); font-weight: 600">Open an account<svg class="fa-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></a></div>
+</div>
+</div>
+<figure class="fa-hero-figure" data-hero="figure" role="region" aria-roledescription="carousel" aria-label="Highlights" onMouseEnter="{{holdOn}}" onMouseLeave="{{holdOff}}" onFocus="{{holdOn}}" onBlur="{{holdOff}}">
+<div aria-live="{{live}}">
+<sc-for list="{{slides}}" as="s" hint-placeholder-count="4">
+<div class="fa-slide" data-active="{{s.current}}" role="group" aria-roledescription="slide" aria-label="{{s.pos}}" style="opacity: {{s.op}}; transform: scale({{s.zoom}}); visibility: {{s.vis}}; transition-delay: 0s, 0s, {{s.visDelay}}">
+<img src="{{s.img}}" alt="{{s.alt}}" style="object-position: {{s.crop}}">
+<span class="fa-scrim" aria-hidden="true"></span>
+<div class="fa-hero-caption on-photo">
+<p style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; line-height: 1.06; color: var(--c-stone); text-wrap: balance">{{s.title}}</p>
+<a href="{{s.href}}" style="display: inline-flex; align-items: center; min-height: var(--target); color: var(--c-stone); font-size: var(--fs-sm); font-weight: 600; line-height: 21.7px; text-decoration: underline; text-underline-offset: 4px">{{s.link}}</a>
+</div>
+</div>
+</sc-for>
+</div>
+<button type="button" class="fa-ctl fa-ctl-step fa-arrow fa-arrow-l" aria-label="Previous highlight" onClick="{{prev}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<button type="button" class="fa-ctl fa-ctl-step fa-arrow fa-arrow-r" aria-label="Next highlight" onClick="{{next}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+<div class="fa-hero-controls on-photo">
+<div class="fa-segs"><sc-for list="{{slides}}" as="s" hint-placeholder-count="4"><button type="button" class="fa-seg-btn" aria-label="{{s.dotLabel}}" aria-current="{{s.current}}" onClick="{{s.pick}}"><span class="fa-seg-track"><sc-if value="{{s.playing}}" hint-placeholder-val="{{ false }}"><span class="fa-seg-fill" style="animation: fa-fill {{ms}}ms linear forwards"></span></sc-if><sc-if value="{{s.still}}" hint-placeholder-val="{{ false }}"><span class="fa-seg-fill"></span></sc-if></span></button></sc-for></div>
+</div>
+</figure>
+</section>
+
+<section aria-labelledby="fa-tasks" style="position: relative">
+<div style="padding: var(--s-4) var(--gutter) 0">
+<h2 id="fa-tasks" data-reveal="mask" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 700; line-height: 0.95">How can we help today?</h2>
+</div>
+<div style="position: relative; margin-top: var(--s-6); min-height: 528px; background: linear-gradient(to bottom, rgba(42, 31, 27, 0) 0, rgba(42, 31, 27, 0) 500px, var(--c-night) 500px)">
+<img src="_blob/0f8a574b98efcb28c91046b62a7b5c9b.jpg" alt="" data-parallax="tasks" data-speed="0.16" style="position: absolute; left: 0; top: 0; display: block; width: 100%; height: 520px; object-fit: cover; object-position: 50% 70%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%); mask-image: linear-gradient(to bottom, transparent 0%, #000 28%)">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(to bottom, rgba(42, 31, 27, 0) 50%, var(--c-night) 100%)"></div>
+<ul data-stagger="" class="fa-task-grid" style="position: relative; list-style: none; margin: 0; padding: var(--s-4) var(--gutter); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); grid-auto-rows: 1fr; gap: var(--s-6)">
+<sc-for list="{{tasks}}" as="k" hint-placeholder-count="6">
+<li data-reveal="" style="display: flex"><a href="{{k.href}}" draggable="false" data-lift="" class="fa-task" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-16); height: 100%; padding: var(--s-7); box-sizing: border-box; border-radius: var(--r-sm); background: var(--c-sand); color: {{k.fg}}; text-decoration: none; font-family: var(--font-ui)">
+<span aria-hidden="true" style="display: flex; justify-content: space-between; align-items: center"><span style="width: 52px; height: 52px; border-radius: var(--r-xs); background: var(--c-night); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color: {{k.icon}}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{k.d}}"></path></svg></span><svg class="fa-arr" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="color: var(--c-ink-deep)"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></span>
+<span><span style="display: block; font-size: var(--fs-2xl); font-weight: 500; line-height: 27.6px; letter-spacing: -0.4px">{{k.label}}</span><span style="display: block; margin-top: var(--s-2); font-size: var(--fs-ui); line-height: 23.2px; color: {{k.sub}}">{{k.subLabel}}</span></span>
+</a></li>
+</sc-for>
+</ul>
+</div>
+</section>
+
+<div class="on-dark" style="background: var(--c-night); color: var(--c-on-night)">
+<section id="products" aria-labelledby="fa-prod" style="padding: var(--section-y) var(--gutter) 0">
+<div class="fa-prod-head" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: last baseline; gap: var(--s-7) var(--s-8)">
+<h2 id="fa-prod" data-reveal="mask" style="margin: 0; flex: 0 1 575px; min-width: min(575px, 100%); font-family: var(--font-display); font-size: var(--fs-display); font-weight: 700; line-height: 0.86; color: var(--c-on-night)">Explore banking products</h2>
+<p data-reveal="" style="margin: 0; flex: 0 1 300px; font-size: var(--fs-md); line-height: 26.4px; color: var(--c-on-night-2)">Accounts, cards and financing. Choose a group to see its products.</p>
+<div role="tablist" aria-label="Product groups" data-reveal="" style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2)">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button type="button" role="tab" id="{{t.tid}}" aria-selected="{{t.sel}}" aria-controls="fa-panel" onClick="{{t.pick}}" class="fa-pill" style="display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); padding: 0 var(--s-4); border: 1px solid {{t.border}}; border-radius: var(--r-pill); background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer">{{t.label}}</button></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: var(--s-8) var(--s-14); margin-top: var(--s-12); align-items: center">
+<div data-reveal="img" class="fa-prod-media" style="flex: 0.8 1 300px; min-width: 0; position: relative; border-radius: var(--r-md); overflow: hidden; aspect-ratio: 1 / 1; background: var(--c-gold)">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: var(--c-on-night); clip-path: polygon(52% 0, 100% 0, 100% 100%, 22% 100%)"></span>
+<img src="_blob/13c53779d93fca05599db47861c83dee.jpg" alt="A woman in an abaya checks her phone at a sunlit café table" style="position: relative; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; -webkit-mask-image: linear-gradient(to right, #000 60%, rgba(0, 0, 0, 0.92) 100%); mask-image: linear-gradient(to right, #000 60%, rgba(0, 0, 0, 0.92) 100%)">
+</div>
+<ul role="tabpanel" id="fa-panel" data-stagger="" aria-labelledby="{{cur.tid}}" style="flex: 1.4 1 480px; min-width: 0; list-style: none; margin: 0; padding: 0">
+<sc-for list="{{items}}" as="p" hint-placeholder-count="3">
+<li data-reveal="" style="border-top: 1px solid var(--c-night-line)"><a href="#" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-2) var(--s-6); padding: var(--s-6) 0; color: var(--c-on-night); text-decoration: none">
+<span style="min-width: 0"><span lang="ar" style="display: block; font-family: var(--font-display); font-size: var(--fs-xl); color: var(--c-gold)">{{p.ar}}</span><span style="display: block; font-family: var(--font-display); font-size: var(--fs-h3-fluid); font-weight: 600; line-height: 1">{{p.name}}</span></span>
+<span class="fa-prod-more" style="display: inline-flex; align-items: center; gap: var(--s-2); margin-inline-start: auto; font-size: var(--fs-sm); line-height: 1.3; color: var(--c-on-night-2); white-space: nowrap"><span>Learn about the {{p.name}}</span><svg class="fa-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--c-gold)"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></span>
+</a></li>
+</sc-for>
+<li style="border-top: 1px solid var(--c-night-line); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-3); padding-top: var(--s-5)"><a href="#" style="display: inline-flex; align-items: center; justify-content: flex-start; min-height: var(--target); min-width: var(--target); color: var(--c-on-night); font-weight: 600; text-decoration: none">{{cur.all}}</a><a href="#" class="fa-pill" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 var(--s-5); border-radius: var(--r-pill); background: var(--c-gold); color: var(--c-night); text-decoration: none; font-weight: 700">Compare accounts</a></li>
+</ul>
+</div>
+</section>
+
+<section id="estimate" aria-labelledby="fa-est" style="padding: var(--section-y) var(--gutter)">
+<div data-reveal="" class="fa-est-box" style="border-radius: var(--r-md); background: var(--c-night-2); padding: var(--s-8) var(--gutter); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-10) var(--s-14)">
+<div class="fa-est-copy" style="flex: 1 1 340px; min-width: 0; max-width: 491px; padding-block: var(--s-4)">
+<h2 id="fa-est" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h2-box); font-weight: 700; line-height: 0.95">Estimate your monthly financing</h2>
+<p style="margin: var(--s-4) 0 0; color: var(--c-on-night-2); max-width: 400px">A guide figure, worked out with the bank's own rules. It is not an application. Conditions and calculation rules are supplied by the bank.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--s-7) var(--s-12); margin-top: var(--s-10); padding-top: var(--s-6); border-top: 1px solid var(--c-night-line)">
+<div role="status" aria-live="polite" style="flex: 1 1 220px; max-width: 280px"><sc-if value="{{estEmpty}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; line-height: 1.1; color: var(--c-on-night)">Enter your details to see an estimate</p></sc-if><sc-if value="{{estDemo}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: inline-block; padding: var(--s-1) var(--s-3); border: 1px solid var(--c-gold); border-radius: var(--r-pill); font-size: var(--fs-2xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-gold)">Demo</p><p style="margin: var(--s-2) 0 0; font-size: var(--fs-ui); line-height: 1.45; color: var(--c-on-night)">Demo only: the bank's calculation rules aren't connected yet.</p></sc-if></div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-1)"><a href="#" class="fa-pill" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--s-6); border-radius: var(--r-pill); background: var(--c-gold); color: var(--c-night); text-decoration: none; font-weight: 700">Apply for financing</a><a href="#" style="display: inline-flex; align-items: center; justify-content: flex-start; min-height: var(--target); min-width: var(--target); color: var(--c-on-night); font-size: var(--fs-sm); text-underline-offset: 4px">See prices of financing products</a></div>
+</div>
+</div>
+<form onSubmit="{{calc}}" class="fa-est-form" style="flex: 0 1 644px; min-width: 0; box-sizing: border-box; border-radius: var(--r-md); border: 1px solid var(--c-glass-line); background: var(--c-glass); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); color: var(--c-white); padding: clamp(var(--s-5), 4vw, var(--s-10)); display: flex; flex-direction: column; gap: var(--s-5); font-family: var(--font-ui)">
+<fieldset style="border: 0; margin: 0; padding: 0; min-width: 0"><legend style="font-size: var(--fs-ui); font-weight: 600; line-height: 23.2px; padding: 0; margin-bottom: var(--s-3)">Type of financing</legend><div class="fa-seg" style="display: flex; border: 1px solid var(--c-field-line); border-radius: var(--r-xs); overflow: hidden"><sc-for list="{{etypes}}" as="e" hint-placeholder-count="3"><button type="button" aria-pressed="{{e.pressed}}" onClick="{{e.pick}}" style="flex: 1; min-height: 50px; border: 0; border-inline-start: {{e.divider}}; background: {{e.bg}}; color: {{e.fg}}; font-family: inherit; font-weight: 600; cursor: pointer">{{e.label}}</button></sc-for></div></fieldset>
+<div><label for="fa-sal" style="display: block; font-size: var(--fs-ui); font-weight: 600; line-height: 23.2px; margin-bottom: var(--s-2)">Monthly salary (SAR)</label><input id="fa-sal" inputmode="numeric" style="width: 100%; box-sizing: border-box; height: 54px; border: 1px solid var(--c-field-line); border-radius: var(--r-xs); background: var(--c-field); color: var(--c-stone-2); padding: 0 var(--s-4); font-family: var(--font-mono); font-size: var(--fs-body)"></div>
+<div style="display: flex; flex-wrap: wrap; gap: var(--s-4)"><div style="flex: 1 1 260px"><label for="fa-emp" style="display: block; font-size: var(--fs-ui); font-weight: 600; line-height: 23.2px; margin-bottom: var(--s-2)">Employer type</label><div style="position: relative"><select id="fa-emp" style="width: 100%; height: 54px; border: 1px solid var(--c-field-line); border-radius: var(--r-xs); background: var(--c-field); color: var(--c-stone-2); padding: 0 var(--s-10) 0 var(--s-3); font-family: var(--font-body); font-size: var(--fs-sm); -webkit-appearance: none; appearance: none"><option style="color: var(--c-ink)">Choose employer type</option><option style="color: var(--c-ink)">Government</option><option style="color: var(--c-ink)">Private</option><option style="color: var(--c-ink)">Retired</option></select><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--c-stone-2); position: absolute; right: 17px; top: 19px; pointer-events: none"><path d="M6 9l6 6 6-6"></path></svg></div></div><div style="flex: 1 1 200px"><label for="fa-term" style="display: block; font-size: var(--fs-ui); font-weight: 600; line-height: 23.2px; margin-bottom: var(--s-2)">Term (months)</label><input id="fa-term" inputmode="numeric" style="width: 100%; box-sizing: border-box; height: 54px; border: 1px solid var(--c-field-line); border-radius: var(--r-xs); background: var(--c-field); color: var(--c-stone-2); padding: 0 var(--s-4); font-family: var(--font-mono); font-size: var(--fs-body)"></div></div>
+<button type="submit" class="fa-pill" style="min-height: 56px; border: 0; border-radius: var(--r-md); background: var(--c-night-2); color: var(--c-white); font-family: var(--font-body); font-size: var(--fs-md); font-weight: 600; cursor: pointer">Calculate my estimate</button>
+</form>
+</div>
+</section>
+</div>
+
+<section aria-labelledby="fa-dig" style="padding: var(--section-y) var(--gutter) 0">
+<h2 id="fa-dig" data-reveal="mask" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 700; line-height: 0.95">Digital banking</h2>
+<div data-stagger="" class="fa-dig-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); grid-auto-rows: minmax(var(--tile-min), auto); gap: var(--s-3); margin-top: var(--s-7)">
+<div data-reveal="" style="border-radius: var(--r-md); background: var(--c-stone-2); padding: var(--s-7); display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-8)"><h3 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 600; line-height: 1">Online banking</h3><div><p style="margin: 0; color: var(--c-ink-2)">Log in from the top of any page.</p><a href="#top" style="display: inline-flex; align-items: center; justify-content: flex-start; gap: var(--s-2); min-height: 46px; min-width: var(--target); font-weight: 600; color: var(--c-red); text-underline-offset: 4px">Go to Log in<svg class="fa-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></a></div></div>
+<div data-reveal="" style="border-radius: var(--r-md); background: var(--c-sand); padding: var(--s-7); display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-8)"><h3 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 600; line-height: 1">Mobile app</h3><div style="display: flex; flex-wrap: wrap; gap: var(--s-2)"><a href="#" class="fa-pill" aria-label="Download the Lorem Ipsum app on the App Store" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 var(--s-5); border-radius: var(--r-pill); background: var(--c-ink); color: var(--c-white); text-decoration: none; font-size: var(--fs-sm); font-weight: 600">App Store</a><a href="#" class="fa-pill" aria-label="Get the Lorem Ipsum app on Google Play" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 var(--s-5); border-radius: var(--r-pill); background: var(--c-ink); color: var(--c-white); text-decoration: none; font-size: var(--fs-sm); font-weight: 600">Google Play</a></div></div>
+<div data-reveal="" style="position: relative; border-radius: var(--r-md); overflow: hidden; display: flex; align-items: flex-end"><img src="_blob/e74f8e19264e7a12be74fb700ff5cbac.jpg" alt="A hand resting a phone on a stone table beside a cup of coffee" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"><div class="on-photo" style="position: relative; width: 100%; box-sizing: border-box; padding: var(--s-7); background: linear-gradient(to top, rgba(23, 10, 12, 0.82), rgba(23, 10, 12, 0))"><h3 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; color: var(--c-white)">Instant payments</h3><a href="#" style="display: inline-flex; align-items: center; min-height: var(--target); color: var(--c-white); font-size: var(--fs-sm); text-underline-offset: 4px">How Instant payments work</a></div></div>
+</div>
+</section>
+
+<sc-if value="{{showOffers}}" hint-placeholder-val="{{ true }}">
+<section aria-labelledby="fa-off" style="padding: var(--section-y) var(--gutter) 0">
+<div class="fa-off-head" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-4)">
+<h2 id="fa-off" data-reveal="mask" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 700; line-height: 0.95">Offers and rewards</h2>
+<div style="display: flex; align-items: center; gap: var(--s-2)"><button type="button" aria-label="Previous offers" onClick="{{pgPrev}}" style="width: 46px; height: 46px; border: 1px solid var(--c-ink); border-radius: var(--r-pill); background: transparent; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--c-ink)"><path d="M15 6l-6 6 6 6"></path></svg></button><span aria-live="polite" style="display: inline-flex; align-items: center; justify-content: center; height: 46px; min-width: 64px; font-family: var(--font-mono); font-size: var(--fs-xs)">{{pgLabel}}</span><button type="button" aria-label="Next offers" onClick="{{pgNext}}" style="width: 46px; height: 46px; border: 1px solid var(--c-ink); border-radius: var(--r-pill); background: transparent; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--c-ink)"><path d="M9 6l6 6-6 6"></path></svg></button></div>
+</div>
+<sc-if value="{{sample}}" hint-placeholder-val="{{ true }}"><p style="margin: var(--s-2) 0 0; font-size: var(--fs-xs); color: var(--c-ink-3)">Sample content for design review, not current Lorem Ipsum offers.</p></sc-if>
+<div data-stagger="" class="fa-off-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); grid-auto-rows: minmax(var(--tile-min), auto); gap: var(--s-3); margin-top: var(--s-7)">
+<sc-for list="{{offers}}" as="o" hint-placeholder-count="2"><article data-reveal="" style="display: flex; flex-direction: column; border-radius: var(--r-md); background: var(--c-stone-2); overflow: hidden"><img src="{{o.img}}" alt="{{o.alt}}" style="display: block; width: 100%; height: var(--media-sm); object-fit: cover; object-position: {{o.crop}}"><div style="flex: 1; display: flex; flex-direction: column; padding: var(--s-5)"><p style="margin: 0; font-size: var(--fs-xs); font-weight: 600; color: var(--c-ink-3)">{{o.tag}}</p><h3 style="margin: var(--s-1) 0 0; font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; line-height: 1.05; color: var(--c-ink)">{{o.title}}</h3><p style="margin: var(--s-2) 0 0; font-family: var(--font-mono); font-size: var(--fs-2xs); color: var(--c-ink-3)">Valid until <time datetime="{{o.iso}}">{{o.valid}}</time></p><a href="#" style="margin-top: auto; padding-top: var(--s-3); align-self: flex-start; display: inline-flex; align-items: center; justify-content: flex-start; min-height: var(--target); min-width: var(--target); font-weight: 600; text-underline-offset: 4px">See offer details</a></div></article></sc-for>
+<article data-reveal="" style="border-radius: var(--r-md); background: var(--c-gold); color: var(--c-night); padding: var(--s-7); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-6)"><p style="margin: 0; font-size: var(--fs-sm); font-weight: 600">Loyalty program</p><div><p lang="ar" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-ar-display); font-weight: 600; color: var(--c-night); line-height: 1.1">مكافآت لوريم إيبسوم</p><h3 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 600; line-height: 1">Lorem Ipsum Rewards</h3></div><a href="#" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: flex-start; min-height: var(--target); min-width: var(--target); color: var(--c-night); font-weight: 600; text-underline-offset: 4px">Learn about Lorem Ipsum Rewards</a></article>
+</div>
+</section>
+</sc-if>
+
+<section id="help" aria-labelledby="fa-help" style="padding: var(--section-y) var(--gutter)">
+<h2 id="fa-help" data-reveal="mask" style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 700; line-height: 0.95">Need help?</h2>
+<div style="display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-7)">
+<div class="on-red fa-help-card" data-reveal="" style="flex: 1.5 1 500px; min-width: 0; box-sizing: border-box; border-radius: var(--r-md); background: var(--c-red); color: var(--c-white); padding: clamp(var(--s-6), 3.4vw, var(--s-12)); display: flex; flex-direction: column; gap: var(--s-5)">
+<h3 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-callout); font-weight: 700; line-height: 0.95">Lost your card or suspect fraud?</h3>
+<p style="margin: 0; max-width: 500px">Call the number for where you are now, then follow the steps on the fraud reporting page.</p>
+<div style="display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-12); margin-top: var(--s-7)"><a href="tel:8000000000" draggable="false" style="color: var(--c-white); text-decoration: none; display: flex; flex-direction: column"><span style="font-size: var(--fs-sm); font-weight: 600">Toll-free</span><span class="fa-tel" style="font-size: var(--fs-num-lg); line-height: 1.15">800 000 0000</span></a></div>
+<a href="tel:+000000000000" draggable="false" style="color: var(--c-white); text-decoration: none; display: flex; flex-direction: column"><span style="font-size: var(--fs-sm); font-weight: 600">From abroad</span><span class="fa-tel" style="font-size: var(--fs-num-md); line-height: 1.3">+000 000 000 000</span></a><a href="#" class="fa-pill" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; gap: var(--s-3); min-height: 50px; margin-top: var(--s-2); padding: 0 var(--s-6); border-radius: var(--r-pill); background: var(--c-white); color: var(--c-red-deep); text-decoration: none; font-weight: 700">How to report fraud<svg class="fa-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div data-stagger="" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: var(--s-2)">
+<div data-reveal="img" style="border-radius: var(--r-md); overflow: hidden"><img src="_blob/841a4c694cffa57dde0bae4ce341350f.jpg" alt="A calm branch interior with a long stone counter" style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover"></div>
+<sc-for list="{{helpLinks}}" as="h" hint-placeholder-count="3"><a href="#" data-reveal="" style="display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 0 var(--s-5); border-radius: var(--r-sm); background: var(--c-stone-2); color: var(--c-ink); text-decoration: none; font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 600">{{h}}<svg class="fa-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--c-red)"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></a></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: var(--s-8) var(--s-18); margin-top: var(--s-18); padding-top: var(--s-7); border-top: 1px solid var(--c-line)">
+<div data-reveal="" style="flex: 1 1 340px"><h2 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 700">About Lorem Ipsum</h2><p style="margin: var(--s-2) 0 0; color: var(--c-ink-2)">A fictional bank, made as a design concept.</p><a href="#" style="display: inline-flex; min-height: var(--target); min-width: var(--target); align-items: center; font-weight: 600; text-underline-offset: 4px">Investor relations</a></div>
+<sc-if value="{{showNews}}" hint-placeholder-val="{{ true }}"><div data-reveal="" style="flex: 1.4 1 460px"><h2 style="margin: 0; font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 700">Latest news</h2><sc-if value="{{sample}}" hint-placeholder-val="{{ true }}"><p style="margin: var(--s-1) 0 0; font-size: var(--fs-xs); color: var(--c-ink-3)">Sample content for design review, not real Lorem Ipsum news.</p></sc-if><ul style="list-style: none; margin: var(--s-2) 0 0; padding: 0"><sc-for list="{{news}}" as="nw" hint-placeholder-count="3"><li style="border-bottom: 1px solid var(--c-line)"><a href="#" style="display: flex; gap: var(--s-6); padding: var(--s-4) 0; color: var(--c-ink-3); text-decoration: none"><time datetime="{{nw.iso}}" style="flex: none; width: 88px; padding-top: 3px; font-family: var(--font-mono); font-size: var(--fs-2xs)">{{nw.date}}</time><span style="color: var(--c-ink)">{{nw.title}}</span></a></li></sc-for></ul><a href="#" style="display: inline-flex; min-height: var(--target); min-width: var(--target); align-items: center; font-weight: 600; text-underline-offset: 4px">See all Lorem Ipsum news</a></div></sc-if>
+</div>
+</section>
+</div>
+
+<footer style="position: relative; max-width: var(--container); margin: 0 auto; box-sizing: border-box; padding: var(--s-14) var(--gutter) var(--s-7); color: var(--c-white)">
+<div data-stagger="" class="fa-foot-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-10)">
+<div data-reveal=""><a href="#" aria-label="Lorem Ipsum, home" style="display: inline-flex; padding: var(--s-3) var(--s-4); border-radius: var(--r-sm); background: var(--c-stone)"><span class="fa-mark fa-mark-sm" aria-hidden="true"><span class="fa-mark-ar" lang="ar" dir="rtl">لوريم إيبسوم</span><span class="fa-mark-en">Lorem Ipsum</span></span></a><br><a href="tel:8000000000" draggable="false" class="fa-tel" style="display: inline-flex; min-height: var(--target); min-width: var(--target); align-items: center; margin-top: var(--s-3); color: var(--c-white); font-size: var(--fs-xl); text-decoration: none">800 000 0000</a></div>
+<div data-reveal=""><h2 style="margin: 0 0 var(--s-2); font-size: var(--fs-sm); font-weight: 700; color: var(--c-white); letter-spacing: 0.02em">About Lorem Ipsum</h2><ul style="list-style: none; margin: 0; padding: 0"><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Investor Relations</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Contact Us</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Careers</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Training</a></li></ul></div>
+<div data-reveal=""><h2 style="margin: 0 0 var(--s-2); font-size: var(--fs-sm); font-weight: 700; color: var(--c-white); letter-spacing: 0.02em">Quick links</h2><ul style="list-style: none; margin: 0; padding: 0"><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Privacy Policy</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Terms of Use</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Security Statement</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">How to report fraud</a></li><li><a href="#" class="fa-t" style="justify-content: flex-start; color: var(--c-white); text-decoration: none">Banking Consumer Protection Principles</a></li></ul></div>
+<form onSubmit="{{noSubmit}}" aria-labelledby="fa-nl-h" data-reveal="" style="display: flex; flex-direction: column; gap: var(--s-2)"><h2 id="fa-nl-h" style="margin: 0; font-size: var(--fs-sm); font-weight: 700; color: var(--c-white); letter-spacing: 0.02em">Newsletter</h2><label for="fa-nl" style="font-size: var(--fs-ui)">Email address</label><div style="display: flex; gap: var(--s-2)"><input id="fa-nl" type="email" autocomplete="email" aria-describedby="fa-nl-consent" style="flex: 1; min-width: 0; box-sizing: border-box; height: var(--control); border-radius: var(--r-pill); background: var(--c-white); color: var(--c-ink); padding: 0 var(--s-4); font-family: inherit; font-size: var(--fs-body); opacity: 1; border-style: none"><button type="submit" class="fa-pill" style="flex: none; height: var(--control); min-width: var(--target); box-sizing: border-box; padding: 0 var(--s-6); border: 2px solid var(--c-ink); border-radius: var(--r-pill); background: var(--c-ink); color: var(--c-white); font-family: inherit; font-size: var(--fs-body); font-weight: 700; cursor: pointer">Register</button></div><p id="fa-nl-consent" style="margin: 0; font-size: var(--fs-ui)">We'll use your email address only to send you the Lorem Ipsum newsletter.</p></form>
+</div>
+<div class="fa-foot-base" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); margin-top: var(--s-8); padding-top: var(--s-5); border-top: 1px solid var(--c-rule-on-red); font-size: var(--fs-xs)"><span>© Lorem Ipsum</span><span>A design concept. Not a real bank.</span></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6000}}'>
+const D = {
+  calc: 'M6 3h12v18H6z M9 7h6 M9 11h.01 M12 11h.01 M15 11h.01 M9 14.5h.01 M12 14.5h.01 M15 14.5h.01 M9 18h.01 M12 18h.01 M15 18h.01',
+  shield: 'M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z M12 8v5 M12 16v.5',
+  card: 'M3 6h18v12H3z M3 10h18 M7 15h4',
+  pin: 'M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
+  doc: 'M6 3h9l3 3v15H6z M9 10h6 M9 14h6 M9 18h4',
+  phone: 'M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1C10.7 20 4 13.3 4 5a1 1 0 0 1 1-1z'
+};
+const TABS = [
+  { id: 'accounts', label: 'Accounts & savings', all: 'See all 6 accounts and savings products', items: [['Current Account', 'الحساب الجاري'], ['Savings Account', 'حساب الادخار'], ['Goal Saving Account', 'حساب ادخار الأهداف']] },
+  { id: 'cards', label: 'Cards', all: 'See all 5 cards', items: [['Lorem Ipsum Debit Cards', 'بطاقات لوريم إيبسوم للخصم'], ['Lorem Ipsum Credit Cards', 'بطاقات لوريم إيبسوم الائتمانية'], ['Travel Credit Cards', 'بطاقات السفر الائتمانية']] },
+  { id: 'financing', label: 'Financing', all: 'See all financing products', items: [['Personal Financing', 'التمويل الشخصي'], ['Real Estate Financing', 'التمويل العقاري'], ['Auto Financing', 'تمويل السيارات']] }
+];
+const ET = ['Personal', 'Real estate', 'Auto'];
+// Hero carousel. Real products only (inventory in docs/02). Images are generated stills with no text or logos.
+const MS = 7000;
+const SLIDES = [
+  { name: 'Lorem Ipsum Rewards', title: 'Lorem Ipsum Rewards, our loyalty program.', link: 'Learn about Lorem Ipsum Rewards', href: '#', img: '_blob/e9b5b91f6dd95833f1e9cd808a3bc67d.jpg', crop: '36% 40%', alt: 'A plain red bank card leaning on a cream gift box tied with gold ribbon, on sunlit limestone' },
+  { name: 'Financing', title: 'Personal, real estate and auto financing.', link: 'Estimate your monthly financing', href: '#estimate', img: '_blob/eaead925c9a22464e52c3f18117a15da.jpg', crop: '62% 50%', alt: 'House keys on the stone step of a sunlit home with a tall timber front door' },
+  { name: 'Travel Credit Cards', title: 'Travel Credit Cards.', link: 'Learn about Travel Credit Cards', href: '#', img: '_blob/cee4e084788ccdb6af467b9803885c3f.jpg', crop: '38% 45%', alt: 'A leather passport cover and a card on a café table beside an airport window at sunset' },
+  { name: 'Lorem Ipsum Debit Cards', title: 'Lorem Ipsum Debit Cards.', link: 'Learn about Lorem Ipsum Debit Cards', href: '#', img: '_blob/0a023258307eaf8e51feab46d5974ea2.jpg', crop: '64% 50%', alt: 'A hand holding a red card above a card reader on a café counter' }
+];
+// Content flags. SAMPLE_CONTENT marks invented offers and news: see docs/dev-notes.md before setting it to false.
+const SHOW_OFFERS = true, SHOW_NEWS = true, SAMPLE_CONTENT = true;
+// SAMPLE CONTENT: invented for design review, no rates, fees or eligibility. Replace with real offers from marketing.
+const OFFERS = [
+  { tag: 'Travel', title: 'Travel offers for Travel Credit Card holders', valid: '31 Mar 2027', iso: '2027-03-31', img: '_blob/713519df548b2dc7718d75815ea53cf3.jpg', alt: 'A desert wadi with water and acacia trees at sunset', crop: '50% 60%' },
+  { tag: 'Savings', title: 'Save towards a goal with the Goal Saving Account', valid: '31 Jan 2027', iso: '2027-01-31', img: '_blob/8cf8b02887ad316397ee60031ae0ca4f.jpg', alt: 'A red savings passbook on a pale green cloth', crop: '50% 50%' },
+  { tag: 'Real estate financing', title: 'Book a home-financing consultation at your branch', valid: '28 Feb 2027', iso: '2027-02-28', img: '_blob/81f2b4ce740bb9562397646d1d888111.jpg', alt: 'A sunlit stone staircase curving upwards', crop: '50% 55%' },
+  { tag: 'Debit cards', title: 'Weekend offers with Lorem Ipsum Debit Cards', valid: '30 Apr 2027', iso: '2027-04-30', img: '_blob/c710d105defe791a40074d376add29d9.jpg', alt: 'Cliffs rising above low cloud, in black and white', crop: '60% 50%' }
+];
+const PAGES = Math.ceil(OFFERS.length / 2);
+// SAMPLE CONTENT: invented headlines and dates for design review. Replace with real newsroom items.
+const NEWS = [
+  { date: '12 Nov 2026', iso: '2026-11-12', title: 'Lorem Ipsum publishes its 2025 sustainability report' },
+  { date: '28 Oct 2026', iso: '2026-10-28', title: 'A refreshed branch design opens in Riyadh' },
+  { date: '9 Oct 2026', iso: '2026-10-09', title: 'The Lorem Ipsum app gets a redesigned home screen' }
+];
+class Component extends DCLogic {
+  componentDidMount() {
+    let reduced = false;
+    try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.setState({ i: 0, paused: reduced, hold: false }, () => this.schedule());
+  }
+  componentWillUnmount() { clearTimeout(this.t); }
+  schedule() { clearTimeout(this.t); const s = this.state || {}; if (!s.paused && !s.hold) this.t = setTimeout(() => this.go(1), MS); }
+  go(d) { const s = this.state || {}; const n = SLIDES.length; this.setState({ i: ((s.i || 0) + d + n) % n }, () => this.schedule()); }
+  renderVals() {
+    const s = this.state || {};
+    const hi = s.i || 0, paused = !!s.paused, hold = !!s.hold, n = SLIDES.length;
+    const slides = SLIDES.map((x, k) => {
+      const on = k === hi;
+      return { ...x, op: on ? 1 : 0, zoom: on ? 1 : 1.06, vis: on ? 'visible' : 'hidden', visDelay: on ? '0s' : '700ms',
+        pos: (k + 1) + ' of ' + n + ': ' + x.name, dotLabel: 'Show highlight ' + (k + 1) + ' of ' + n + ': ' + x.name,
+        current: on ? 'true' : 'false', playing: on && !paused && !hold, still: on && (paused || hold),
+        pick: () => this.setState({ i: k }, () => this.schedule()) };
+    });
+    const waves = [];
+    for (let k = 0; k < 22; k++) {
+      let d = '';
+      const amp = 20 + (k % 5) * 6, phase = k * 0.37, base = 40 + k * 30;
+      for (let xx = 0; xx <= 1400; xx += 20) {
+        const y = base + Math.sin(xx / 70 + phase) * amp * Math.cos(xx / 260 - phase * 0.6);
+        d += (xx === 0 ? 'M' : ' L') + xx + ' ' + y.toFixed(1);
+      }
+      waves.push(d);
+    }
+    const tI = s.tab || 0;
+    const tabs = TABS.map((t, k) => ({ ...t, tid: 'fa-tab-' + t.id, sel: k === tI ? 'true' : 'false', bg: k === tI ? 'var(--c-gold)' : 'transparent', fg: k === tI ? 'var(--c-night)' : 'var(--c-on-night)', border: k === tI ? 'var(--c-gold)' : 'var(--c-night-muted)', pick: () => this.setState({ tab: k }) }));
+    const cur = tabs[tI];
+    const eI = s.et || 0, pg = s.pg || 0;
+    const T = (label, subLabel, href, d, urgent) => ({ label, subLabel, href, d: D[d], fg: urgent ? 'var(--c-night)' : 'var(--c-ink-deep)', sub: urgent ? 'var(--c-night)' : 'var(--c-ink-3)', icon: urgent ? 'var(--c-sand)' : 'var(--c-on-night)' });
+    return {
+      slides, ms: MS, live: paused ? 'polite' : 'off',
+      prev: () => this.go(-1), next: () => this.go(1),
+      holdOn: () => { if (!(this.state || {}).hold) this.setState({ hold: true }, () => this.schedule()); },
+      holdOff: () => this.setState({ hold: false }, () => this.schedule()),
+      waves,
+      menuOpen: s.menu ? 'true' : 'false',
+      menuLabel: s.menu ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setState({ menu: !(this.state || {}).menu }),
+      closeMenu: () => { if ((this.state || {}).menu) this.setState({ menu: false }); },
+      nav: ['Accounts & savings', 'Cards', 'Financing', 'Digital banking', 'Help'],
+      tasks: [
+        T('Get a financing estimate', 'Personal, real estate or auto', '#estimate', 'calc'),
+        T('Lost card or suspected fraud?', 'How to report fraud · 800 000 0000', '#help', 'shield', true),
+        T('Request a card', 'Debit, credit and prepaid cards', '#', 'card'),
+        T('Find a branch or ATM', 'The branch and ATM locator', '#', 'pin'),
+        T('Prices and fees', 'Financing and savings products', '#', 'doc'),
+        T('Call us on 800 000 0000', 'From abroad +000 000 000 000', 'tel:8000000000', 'phone')
+      ],
+      tabs, cur, items: cur.items.map(([name, ar]) => ({ name, ar })),
+      etypes: ET.map((label, k) => ({ label, pressed: k === eI ? 'true' : 'false', bg: k === eI ? 'var(--c-night-2)' : 'var(--c-field)', fg: k === eI ? 'var(--c-white)' : 'var(--c-stone)', divider: k === 0 ? '0' : '1px solid var(--c-field-line)', pick: () => this.setState({ et: k }) })),
+      estEmpty: !s.demo, estDemo: !!s.demo,
+      calc: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ demo: true }); },
+      showOffers: SHOW_OFFERS, showNews: SHOW_NEWS, sample: SAMPLE_CONTENT,
+      offers: OFFERS.slice(pg * 2, pg * 2 + 2),
+      pgLabel: (pg + 1) + ' of ' + PAGES, pgPrev: () => this.setState({ pg: (pg + PAGES - 1) % PAGES }), pgNext: () => this.setState({ pg: (pg + 1) % PAGES }),
+      helpLinks: ['Find a branch or ATM', 'Visit the support centre', 'Contact us'],
+      news: NEWS,
+      noSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); }
+    };
+  }
+}
+</script>
+<script>
+/* Motion layer: hero intro, scroll reveals, parallax and the scroll progress bar.
+   Hidden start states only apply once .fa-anim is on <html>, so the page reads fine without JS
+   and is left completely still for people who ask for reduced motion. */
+(function () {
+  var root = document.documentElement;
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (reduce || !('IntersectionObserver' in window)) return;
+  root.classList.add('fa-anim');
+
+  /* A fully clipped element never counts as intersecting, so masked headings are watched
+     through their parent: each watched target maps to the elements it reveals. */
+  var targets = new Map();
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      (targets.get(e.target) || []).forEach(function (el) { el.classList.add('is-in'); });
+      targets.delete(e.target);
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+  function watch(el) {
+    var t = el.getAttribute('data-reveal') === 'mask' ? el.parentElement : el;
+    if (!targets.has(t)) { targets.set(t, []); io.observe(t); }
+    targets.get(t).push(el);
+  }
+
+  var seen = new WeakSet(), layers = [], bar = null;
+
+  function scan() {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      if (seen.has(el)) return;
+      seen.add(el);
+      watch(el);
+    });
+    document.querySelectorAll('[data-parallax]').forEach(function (el) {
+      if (!seen.has(el)) { seen.add(el); layers.push(el); }
+    });
+    if (!bar) bar = document.querySelector('.fa-progress');
+  }
+
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+    for (var k = 0; k < layers.length; k++) {
+      var el = layers[k];
+      if (!el.isConnected) continue;
+      var r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;
+      var centre = (r.top + r.height / 2 - vh / 2) / vh;
+      var speed = parseFloat(el.getAttribute('data-speed')) || 0.1;
+      /* written on <html>: the component's re-renders never touch it */
+      root.style.setProperty('--py-' + el.getAttribute('data-parallax'), (centre * speed * -160).toFixed(2) + 'px');
+    }
+    if (bar) {
+      var max = document.documentElement.scrollHeight - vh;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  /* The component renders after boot and re-renders lists (tabs, offer pages): keep watching. */
+  new MutationObserver(function () { scan(); onScroll(); })
+    .observe(document.body, { childList: true, subtree: true });
+
+  /* Start the hero once the markup and the web fonts are in, so the words don't jump mid-rise. */
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('fa-ready'); }); });
+  }
+  function whenRendered() {
+    if (document.querySelector('.fa-hero')) {
+      scan(); onScroll();
+      (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+      setTimeout(start, 1600);
+    } else {
+      setTimeout(whenRendered, 30);
+    }
+  }
+  whenRendered();
+})();
+</script>
+</body>
+</html>
